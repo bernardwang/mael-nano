@@ -179,7 +179,7 @@ gulp.task('dev', ['styles','scripts-watch'], () => {
 /**
  *	Dist build
  */
-gulp.task('dist', ['min-img','min-styles','lint-scripts','min-scripts'], () => {
+gulp.task('dist', ['min-styles','lint-scripts','min-scripts'], () => {
   sync({
     server: {
       baseDir: './dist/'

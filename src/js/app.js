@@ -18,9 +18,9 @@ global.app = function () {
 		'assets/img/bold.png'
 	];
 	let people = [
-		['Teresa Ibarra', 'Frontend Developer', 'From San Francisco, US',],
+		['Teresa Ibarra', 'Frontend Developer', 'From San Francisco, US'],
 		['Kei Yumino', 'Visual Designer', 'From Shizokuo, Japan'],
-		['Nathalie Martin', 'Researcher', 'From Seattle, US',],
+		['Nathalie Martin', 'Researcher', 'From Seattle, US'],
 		['Sanghyun Lee', 'Researcher', 'From Seoul, Korea'],
 		['Chloe Poulter', 'UX Designer', 'From London, UK'],
 	];

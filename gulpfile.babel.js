@@ -14,7 +14,6 @@ import autoprefixer from 'gulp-autoprefixer';
 import imagemin from 'gulp-imagemin';
 import sync from 'browser-sync';
 import deploy from 'gulp-gh-pages';
-//import path from 'gulp-path'; // do this shit later
 import _ from 'lodash';
 
 /************ Options ************/
@@ -26,11 +25,11 @@ const watchifyOpts = _.extend(
 	browserifyOpts, watchify.args
 );
 const eslintOpts = {
-	extends : 'eslint:recommended',
+	//extends : 'eslint:recommended',
 	//extends : 'airbnb',
 	parser : 'babel-eslint',
-  	rules : {
-		'indent': [2, 'tab']
+	rules : {
+		'indent': [2, 'tab'],
 	}
 }
 const sassOpts = {
@@ -76,14 +75,14 @@ const ENTRY_JS = './src/js/app.js';
 // Browserify function
 let bundler;
 function getBundler(watch) {
-  if (!bundler) { // Initialize bundle with conditional 'watch'
+	if (!bundler) { // Initialize bundle with conditional 'watch'
 		if (watch) {
-    		bundler = watchify(browserify(ENTRY_JS, watchifyOpts));
+			bundler = watchify(browserify(ENTRY_JS, watchifyOpts));
 		} else {
-    		bundler = browserify(ENTRY_JS, browserifyOpts);
+			bundler = browserify(ENTRY_JS, browserifyOpts);
 		}
-  }
-  return bundler;
+	}
+	return bundler;
 };
 
 /************ TASKS ************/
@@ -97,7 +96,7 @@ gulp.task('styles', () => {
 		.pipe(sass(sassOpts).on('error', sass.logError))
 		.pipe(autoprefixer(autoprefixerOpts))
 		.pipe(sourcemaps.write())
-    .pipe(gulp.dest(DEST_CSS))
+		.pipe(gulp.dest(DEST_CSS))
 		.pipe(sync.reload(syncOpts));
 });
 
@@ -105,32 +104,9 @@ gulp.task('styles', () => {
  *	Minify CSS
  */
 gulp.task('min-styles', ['styles'], () => {
-	return gulp.src(DIST_CSS)
+	gulp.src(DIST_CSS)
 		.pipe(cssnano(cssnanoOpts))
-    .pipe(gulp.dest(DEST_CSS));
-});
-
-/**
- *	Builds JS persistently when needed
- */
-gulp.task('scripts-watch', () => {
-  return getBundler( true ) // Watchify
-    .transform(babelify) // Babelify options in package.json
-		.bundle().on('error', (err) => console.log('Error: ' + err.message))
-    .pipe(source('app.js'))	// Output name
-    .pipe(gulp.dest(DEST_JS))
-    .pipe(sync.reload(syncOpts));
-});
-
-/**
- *	Builds JS once
- */
-gulp.task('scripts', () => {
-  return getBundler( false ) // Not watchifying
-    .transform(babelify) // Babelify options in package.json
-		.bundle().on('error', (err) => console.log('Error: ' + err.message))
-    .pipe(source('app.js'))	// Output name
-    .pipe(gulp.dest(DEST_JS));
+		.pipe(gulp.dest(DEST_CSS));
 });
 
 /**
@@ -138,18 +114,31 @@ gulp.task('scripts', () => {
  */
 gulp.task('scripts-simple', () => {
 	gulp.src(ENTRY_JS)
-		//.pipe(source('app.js'))	// Output name
-        .pipe(gulp.dest(DEST_JS))
-        .pipe(sync.reload(syncOpts));
+		.pipe(gulp.dest(DEST_JS))
+		.pipe(sync.reload(syncOpts));
 });
 
 /**
- *	Minify JS
+ *	Builds JS persistently when needed
  */
-gulp.task('min-scripts', () => {
-	gulp.src(DIST_JS)
-		.pipe(uglify())
-    	.pipe(gulp.dest(DEST_JS));
+gulp.task('scripts-watch', () => {
+	return getBundler( true ) // Watchify
+		.transform(babelify) // Babelify options in package.json
+			.bundle().on('error', (err) => console.log('Error: ' + err.message))
+		.pipe(source('app.js'))	// Output name
+		.pipe(gulp.dest(DEST_JS))
+		.pipe(sync.reload(syncOpts));
+});
+
+/**
+ *	Builds JS once
+ */
+gulp.task('scripts', () => {
+	return getBundler( false ) // Not watchifying
+		.transform(babelify) // Babelify options in package.json
+			.bundle().on('error', (err) => console.log('Error: ' + err.message))
+		.pipe(source('app.js'))
+		.pipe(gulp.dest(DEST_JS));
 });
 
 /**
@@ -157,8 +146,18 @@ gulp.task('min-scripts', () => {
  */
 gulp.task('lint-scripts', () => {
 	gulp.src(SRC_JS)
-  		.pipe(eslint(eslintOpts))
-		.pipe(eslint.format());
+		.pipe(eslint(eslintOpts))
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError());
+});
+
+/**
+ *	Minify js
+ */
+gulp.task('min-scripts', ['scripts'], () => {
+	return gulp.src(DIST_JS)
+		.pipe(uglify())
+		.pipe(gulp.dest(DEST_JS));
 });
 
 /**
@@ -174,34 +173,33 @@ gulp.task('min-img', () => {
  *	Auto build and reload
  */
 gulp.task('dev', ['styles','scripts-watch'], () => {
-  sync({
-    server: {
-      baseDir: './dist/'
-    }
-  });
+	sync({
+		server: {
+			baseDir: './dist/'
+		}
+	});
 
 	// Reloads on HTML, CSS, and JS changes
 	gulp.watch(SRC_SASS, ['styles']);
 	gulp.watch(SRC_HTML).on('change', sync.reload);
-	//gulp.watch(SRC_JS, ['scripts-simple']);
-  	getBundler().on('update', () => gulp.start('scripts-watch'));
+	getBundler().on('update', () => gulp.start('scripts-watch'));
 });
 
 /**
  *	Dist build
  */
-gulp.task('dist', ['min-styles','scripts','lint-scripts','min-scripts'], () => {
-  sync({
-    server: {
-      baseDir: './dist/'
-    }
-  });
+gulp.task('dist', ['lint-scripts','min-styles','min-scripts'], () => {
+	sync({
+		server: {
+		baseDir: './dist/'
+		}
+  	});
 });
 
 /**
  *	Deploy to github pages
  */
-gulp.task('deploy', ['min-img','min-styles','lint-scripts','min-scripts'], () => {
+gulp.task('deploy', ['dist'], () => {
 	return gulp.src('./dist/**/*')
 		.pipe(deploy(deployOpts));
 });

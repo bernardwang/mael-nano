@@ -134,21 +134,31 @@ gulp.task('scripts', () => {
 });
 
 /**
+ *	Moves entry file to dist
+ */
+gulp.task('scripts-simple', () => {
+	gulp.src(ENTRY_JS)
+		//.pipe(source('app.js'))	// Output name
+        .pipe(gulp.dest(DEST_JS))
+        .pipe(sync.reload(syncOpts));
+});
+
+/**
  *	Minify JS
  */
-gulp.task('min-scripts', ['scripts'], () => {
-	return gulp.src(DIST_JS)
+gulp.task('min-scripts', () => {
+	gulp.src(DIST_JS)
 		.pipe(uglify())
-    .pipe(gulp.dest(DEST_JS));
+    	.pipe(gulp.dest(DEST_JS));
 });
 
 /**
  *	Lint JS
  */
 gulp.task('lint-scripts', () => {
-  gulp.src(SRC_JS)
-    .pipe(eslint(eslintOpts))
-    .pipe(eslint.format());
+	gulp.src(SRC_JS)
+  		.pipe(eslint(eslintOpts))
+		.pipe(eslint.format());
 });
 
 /**
@@ -173,13 +183,14 @@ gulp.task('dev', ['styles','scripts-watch'], () => {
 	// Reloads on HTML, CSS, and JS changes
 	gulp.watch(SRC_SASS, ['styles']);
 	gulp.watch(SRC_HTML).on('change', sync.reload);
-  getBundler().on('update', () => gulp.start('scripts-watch'));
+	//gulp.watch(SRC_JS, ['scripts-simple']);
+  	getBundler().on('update', () => gulp.start('scripts-watch'));
 });
 
 /**
  *	Dist build
  */
-gulp.task('dist', ['min-styles','lint-scripts','min-scripts'], () => {
+gulp.task('dist', ['min-styles','scripts','lint-scripts','min-scripts'], () => {
   sync({
     server: {
       baseDir: './dist/'

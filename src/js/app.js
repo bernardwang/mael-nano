@@ -170,7 +170,7 @@ global.app = function () {
 	// key binding for up and down arrows
 	$(document).keydown(function(e){
 		if (!pastCooldown(arrow_cooldown)) return;
-		
+
 		if (e.keyCode == 38) {
 			prevPage();
 		} else if (e.keyCode == 40) {

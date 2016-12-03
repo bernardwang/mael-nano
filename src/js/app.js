@@ -2,27 +2,13 @@ import 'babel-polyfill';
 
 global.app = function () {
 
-	// #people cycle
-	let words = [
-		'empathetic?',
-		'genuine?',
-		'open?',
-		'curious?',
-		'bold?'
-	];
-	let images = [
+	// #people backgrounds
+	let bg = [
 		'assets/img/empathetic.png',
 		'assets/img/genuine.png',
 		'assets/img/open.png',
 		'assets/img/curious.png',
 		'assets/img/bold.png'
-	];
-	let people = [
-		['Teresa Ibarra', 'Frontend Developer', 'From San Francisco, US'],
-		['Kei Yumino', 'Visual Designer', 'From Shizokuo, Japan'],
-		['Nathalie Martin', 'Researcher', 'From Seattle, US'],
-		['Sanghyun Lee', 'Researcher', 'From Seoul, Korea'],
-		['Chloe Poulter', 'UX Designer', 'From London, UK'],
 	];
 
 	let i = 0;
@@ -38,23 +24,11 @@ global.app = function () {
 			return;
 		}
 		people_cycle = setInterval(function() {
-			i = (i + 1) % words.length;
-			// background 
-			$('#people').css("background-image", "url(" + images[i = (i + 1) % images.length] + ")");
-			// character traits
-			$('#swap-word').fadeOut(function() {
-				$(this).html(words[i]);
-			}).fadeIn();
-			// people description
-			$('#swap-name').fadeOut(function() {
-				$(this).html(people[i][0]);
-			}).fadeIn();
-			$('#swap-role').fadeOut(function() {
-				$(this).html(people[i][1]);
-			}).fadeIn();
-			$('#swap-loc').fadeOut(function() {
-				$(this).html(people[i][2]);
-			}).fadeIn();
+			$(".swap-elem:nth-child("+(i+1)+")").toggleClass('target');
+			i = (i + 1) % bg.length;
+
+			$('#people').css("background-image", "url(" + bg[i] + ")");
+			$(".swap-elem:nth-child("+(i+1)+")").toggleClass('target');
 		}, 3000);
 	}
 

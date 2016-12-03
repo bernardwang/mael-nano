@@ -199,7 +199,7 @@ gulp.task('dist', ['lint-scripts','min-styles','min-scripts'], () => {
 /**
  *	Deploy to github pages
  */
-gulp.task('deploy', ['dist'], () => {
+gulp.task('deploy', ['lint-scripts','min-styles','min-scripts'], () => {
 	return gulp.src('./dist/**/*')
 		.pipe(deploy(deployOpts));
 });

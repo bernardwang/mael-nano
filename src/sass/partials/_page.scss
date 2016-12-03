@@ -65,7 +65,7 @@
 	background-color: $background1;
 
 	.page-container {
-		margin-top: 3rem;
+		padding-top: 3rem;
 	}
 
 	.ibm-design, .ibm-maelstrom {
@@ -300,7 +300,6 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: stretch;
-		flex-grow: 1;
 	}
 
 	#apply_copy {

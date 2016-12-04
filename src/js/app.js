@@ -39,9 +39,8 @@ global.app = function () {
 	 * Start interval for #people page
 	 */
 	let startPeopleCycle = function() {
-		if (people_cycle != null) {
-			return;
-		}
+		if (people_cycle != null) return;
+
 		people_cycle = setInterval(function() {
 			$(".swap-elem:nth-child("+(people_id+1)+")").toggleClass('target');
 			people_id = (people_id + 1) % people_bg.length;

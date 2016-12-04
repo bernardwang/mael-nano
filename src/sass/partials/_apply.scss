@@ -1,0 +1,173 @@
+#apply {
+	background-color: $background6;
+	color: $secondaryfont;
+
+	.page-overlay {
+		background-color: $background6;
+	}
+
+	.page-container {
+		padding-left: 9rem;
+		padding-top: 6rem;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: stretch;
+	}
+
+	#apply_copy {
+		width: 45vw;
+
+		.page-header {
+			color: white;
+			font-size: 2rem;
+			max-width: 100%;
+		}
+	}
+
+	.apply-visual {
+		width: 100%;
+		height: auto;
+		margin-top: 3rem;
+		margin-left: -4rem;
+	}
+
+	.form-basic {
+		margin-top: 3.2rem;
+		font: inherit;
+
+		.svg {
+			margin: 1rem;
+			margin-bottom: .7rem;
+			width: 65px;
+			height: 65px;
+			color: white;
+		}
+
+		.svg-container {
+			color: $secondaryfont;
+			text-align: center;
+			border: 1px solid transparent;
+
+			p {
+				margin: 0 0 0.25rem;
+			}
+		}
+
+		.svg-container:hover {
+			border-bottom: 1px solid $secondaryfont;
+		}
+
+		.form-row {
+			text-align: left;
+			margin-bottom: 1rem;
+		}
+
+		.form-label {
+			margin: 0;
+			color: white;
+			font-size: 14px;
+			font-weight: 400;
+		}
+
+		#job_selector {
+			justify-content: space-between;
+			margin-bottom: 2.5rem;
+
+			button {
+				margin: 4rem 0 2rem;
+				background-color: $background6;
+				font-size: 1rem;
+				width: 10rem;
+				height: 4rem;
+			}
+		}
+
+		h1 {
+			display: inline-block;
+			box-sizing: border-box;
+			color: $secondaryfont;
+			font-size: 1.5rem;
+			font-weight: normal;
+			color: white;
+			margin-bottom: 1rem;
+			margin-top: 0;
+		}
+
+		input {
+			font-size: 1rem;
+			background-color: $background6;
+			border: 0 solid #f00;
+			border-bottom: 1px solid $secondaryfont;
+			color: white;
+			box-sizing: border-box;
+			width: 100%;
+			padding: 6px 6px 6px 0;
+			margin-top: 0rem;
+		}
+
+		input:focus {
+
+		}
+
+		/* GROSS HACK ALERT WEEEOOOOWEEEOOO */
+		input::-webkit-input-placeholder {
+			color: $secondaryfont;
+		}
+
+		input::-moz-placeholder {
+			color: $secondaryfont;
+		}
+
+		input:-ms-input-placeholder {
+			color: $secondaryfont;
+		}
+
+		select {
+			background-color: #ffffff;
+			color: $primaryfont;
+			box-sizing: border-box;
+			max-width: 240px;
+			font-size: 1.25rem;
+			padding: 12px 8px;
+			border: 1px solid #dbdbdb;
+			margin-top: 0.40rem;
+		}
+
+		button {
+			justify-content: flex-start;
+			border-radius: 2px;
+			background-color: $secondaryfont;
+			font-family: $bold-font-stack;
+			color: $primaryfont;
+			text-align: center;
+			font-size: 1rem;
+			padding: 14px 22px;
+			border: 0;
+			width: 6.5rem;
+			height: 3rem;
+			margin: 1rem auto 0;
+		}
+	}
+}
+
+@media (max-width: $bp-medium) {
+	#apply {
+		.page-container{
+			flex-direction: column;
+			margin: 0;
+			padding: 2rem;
+		}
+
+		.apply-visual {
+			width: 80vw;
+			height: auto;
+			margin: 0;
+		}
+
+		.svg {
+			margin: .5rem;
+			width: 45px;
+			height: 45px;
+		}
+	}
+}

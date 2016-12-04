@@ -1,0 +1,70 @@
+#maelstrom {
+	background-image: url(../img/slide1.png);
+	background-color: $background1;
+	color: #0E5158;
+
+	.page-overlay {
+		background-color: $background1;
+	}
+
+	.page-container {
+		padding-top: 3rem;
+		transform: translateY(0px);
+	}
+
+	.ibm-design, .ibm-maelstrom {
+		color: black;
+		font-size: 1.5rem;
+	}
+
+	.ibm-design {
+		font-family: $light-font-stack;
+	}
+
+	.page-label {
+		text-transform: none;
+		font-family: $bold-font-stack;
+		margin-top: 12rem;
+		margin-bottom: 0rem;
+		font-size: 1.75rem;
+		color: $tertiaryfont;
+	}
+
+	.main-branding {
+		width: 40%;
+		margin-left: -10px;
+		margin-bottom: 1rem;
+	}
+
+	.arrow-container{
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		bottom: 1.5rem;
+		right: 0;
+		left: 0;
+		margin: auto;
+		flex-direction: column;
+		justify-content: center;
+		flex-wrap: wrap;
+		align-items: center;
+		cursor: pointer;
+
+		&:hover {
+			.main-arrow, .arrow-label {
+				transform: translateY(5px);
+			}
+		}
+	}
+
+	.main-arrow, .arrow-label {
+		transition: transform, 0.5s;
+	}
+
+	.main-arrow {
+		width: 40px;
+		height: 20px;
+		margin-top: 0.5rem;
+	}
+
+}

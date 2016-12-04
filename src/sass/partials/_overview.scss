@@ -1,0 +1,40 @@
+
+#overview {
+	background-image: url(../img/slide2.png);
+	background-color: $background2;
+	color: #186A73;
+
+	.page-overlay {
+		background-color: $background2;
+	}
+
+	.page-header {
+		font-size: 2.25rem;
+		color: #0C373C;
+	}
+
+	.seasons-container {
+		width: 30%;
+		margin-top: 1rem;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.svg-container {
+		margin-right: 1.5rem;
+	}
+
+	.season-img {
+		max-width: 60px;
+	}
+
+	.season-label {
+		color: #0C373C;
+	}
+
+	.season-label, .season-dates {
+		margin: 0;
+	}
+
+}

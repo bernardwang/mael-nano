@@ -22,8 +22,10 @@ global.app = function () {
 		'assets/img/bold.png'
 	];
 	
-	let scroll_cooldown = 1000; 								// 1 second cooldown between page scrolls
-	let scroll_time = new Date().getTime()+scroll_cooldown;		// last scroll timestamp
+	let scroll_cooldown = 1000; 								// 1 second cooldown for mousescroll
+	let scroll_threshold = 30;									// ignore smaller scroll events
+	let page_cooldown = 700; 									// .7 second cooldown for default page
+	let scroll_time = new Date().getTime()-page_cooldown;		// last scroll timestamp
 
 	/**
 	 * Stop interval for #people page
@@ -43,10 +45,9 @@ global.app = function () {
 		people_cycle = setInterval(function() {
 			$(".swap-elem:nth-child("+(people_id+1)+")").toggleClass('target');
 			people_id = (people_id + 1) % people_bg.length;
-
 			$('#people').css("background-image", "url(" + people_bg[people_id] + ")");
 			$(".swap-elem:nth-child("+(people_id+1)+")").toggleClass('target');
-		}, 3500);
+		}, 3000);
 	}
 
 	/**
@@ -108,7 +109,7 @@ global.app = function () {
 		setTimeout(function() {						// After new page completely faded in, reset old page classes
 			$(old_page).removeClass('target');
 			$(old_page).removeClass('old-target');
-		}, 1000);
+		}, page_cooldown);
 
 		// update scroll globals
 		page_id = new_id;
@@ -118,11 +119,10 @@ global.app = function () {
 	/**
 	 * Event for mouse scrolling
 	 */
-	$(document).mousewheel(function(e) {
+	$('body').mousewheel(function(e) {
 		let scroll_value = e.deltaY;
-		if (!onCooldown(scroll_cooldown)) return; // ignore if on cooldown
+		if (!onCooldown(scroll_cooldown) || scroll_value>scroll_threshold) return; // ignore if on cooldown or if too small
 		
-		// scrolls
 		if (scroll_value < 0) {
 			nextPage();
 		} else {
@@ -134,7 +134,7 @@ global.app = function () {
 	 * Event for keyboard scrolling
 	 */
 	$(document).keydown(function(e){
-		if (!onCooldown(scroll_cooldown)) return;
+		if (!onCooldown(page_cooldown)) return; // ignore if on cooldown
 
 		if (e.keyCode == 38) {
 			prevPage();
@@ -154,6 +154,8 @@ global.app = function () {
 	 * Nav bar listener
 	 */
 	$('.nav-link').click(function(e) {   
+		if (!onCooldown(page_cooldown)) return;  // ignore if on cooldown
+
 		e.preventDefault();
 		let new_id = $('.nav-link').index($(this));
 		scrollPage(new_id);

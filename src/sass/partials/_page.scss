@@ -80,25 +80,23 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	opacity: 0; 
-	transition: opacity 1s;
+	opacity: 0;
 }
 
-@media (max-width: $bp-medium) {
+@media (max-width: $bp-large) {
 	.page-overlay {
 		opacity: .7;
 	}
 
 	.page {
 		background-size: 200%;
-		background-position: -100vw;
+		background-position: -90vw;
 	}
 
 	.page-container {
 		flex-direction: column;
 		margin: 0;
 		padding: 2rem;
-		z-index: 12;
 	}
 
 	.page-header {

@@ -100,16 +100,33 @@
 
 @media (max-width: $bp-medium) {
 	#people {
-		background-position: -120vw;
+		background-position: -140vw;
 
 		.people-video {
 			display: none;
 		}
+
+		.page-header {
+			max-width: 80%;
+		}
 	
-		.people-desc {
-			positon: absolute;
-			right: 5rem;
-			bottom: 5rem;
+		.swap-word {
+			font-size: 4rem;
+		}
+
+		.swap-desc {
+			left: 0;
+			bottom: 0;
+			text-align: left;
+			padding: 0;
+		}
+	}
+}
+
+@media (max-width: $bp-large) {
+	#people {
+		.swap-desc {
+			bottom: 1rem;
 		}
 	}
 }

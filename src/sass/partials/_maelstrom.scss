@@ -68,3 +68,15 @@
 	}
 
 }
+
+@media (max-width: $bp-large) {
+	#maelstrom {
+		.page-label {
+			font-size: 2rem;
+		}
+
+		.main-branding {
+			width: 100%;
+		}
+	}
+}

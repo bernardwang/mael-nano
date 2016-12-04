@@ -227,6 +227,11 @@
 		color: #7DE1EB;
 	}
 
+	#people-preload {
+		background-repeat: no-repeat;
+		background-position: -9999px, -9999px;
+	}
+
 	#people-swap {
 		position: relative;
 		width: 100%;

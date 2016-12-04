@@ -19,13 +19,47 @@ global.app = function () {
 		'assets/img/genuine.png',
 		'assets/img/open.png',
 		'assets/img/curious.png',
-		'assets/img/bold.png'
+		'assets/img/bold.png',
 	];
 	
 	let scroll_cooldown = 1000; 								// 1 second cooldown for mousescroll
 	let scroll_threshold = 30;									// ignore smaller scroll events
 	let page_cooldown = 700; 									// .7 second cooldown for default page
 	let scroll_time = new Date().getTime()-page_cooldown;		// last scroll timestamp
+
+	/**
+	 * CSS preload #people cycle images
+	 */
+	let preloadPeopleBgs = function() {
+		let background = "";
+		for (let i = 0; i < people_bg.length; i++) background += "url("+people_bg[i]+"),";
+		background = background.slice(0, -1);
+		$('#people-preload').css("background-image", background);
+	}
+
+	/**
+	 * Call function after page loads
+	 * Simon Willison's addLoadEvent
+	 * http://blog.simonwillison.net/post/57956760515/addloadevent
+	 */
+	let addLoadEvent = function(func) {
+		var oldonload = window.onload;
+		if (typeof window.onload != 'function') {
+			window.onload = func;
+		} else {
+			window.onload = function() {
+				if (oldonload) {
+					oldonload();
+				}
+				func();
+			}
+		}
+	}
+
+	/**
+	 * CSS preload after page load
+	 */
+	addLoadEvent(preloadPeopleBgs);
 
 	/**
 	 * Stop interval for #people page

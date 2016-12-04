@@ -1,21 +1,21 @@
 @font-face {
-    font-family: HelvNeueRomanForIBM;
-    src: url("../fonts/HelvNeueRomanForIBM.otf") format("opentype");
+    font-family: HelvNeueRomanforIBM;
+    src: url("../fonts/HelvNeueRomanforIBM.otf") format("opentype");
 }
 @font-face {
-    font-family: HelvNeueMediumForIBM;
-    src: url("../fonts/HelvNeueMediumForIBM.otf") format("opentype");
+    font-family: HelvNeueMediumforIBM;
+    src: url("../fonts/HelvNeueMediumforIBM.otf") format("opentype");
 }
 @font-face {
-    font-family: HelvNeueLightForIBM;
-    src: url("../fonts/HelvNeueLightForIBM.otf") format("opentype");
+    font-family: HelvNeueLightforIBM;
+    src: url("../fonts/HelvNeueLightforIBM.otf") format("opentype");
 }
 @font-face {
-    font-family: HelvNeueBoldForIBM;
-    src: url("../fonts/HelvNeueBoldForIBM.otf") format("opentype");
+    font-family: HelvNeueBoldforIBM;
+    src: url("../fonts/HelvNeueBoldforIBM.otf") format("opentype");
 }
 
-$font-stack: HelvNeueRomanForIBM, Helvetica, Arial, sans-serif;
-$bold-font-stack: HelvNeueBoldForIBM, HelvNeueRomanForIBM, Helvetica, Arial, sans-serif;
-$medium-font-stack: HelvNeuemediumForIBM, HelvNeueRomanForIBM, Helvetica, Arial, sans-serif;
-$light-font-stack: HelvNeueLightForIBM, HelvNeueRomanForIBM, Helvetica, Arial, sans-serif;
+$font-stack: HelvNeueRomanforIBM, Helvetica, Arial, sans-serif;
+$bold-font-stack: HelvNeueBoldforIBM, HelvNeueRomanforIBM, Helvetica, Arial, sans-serif;
+$medium-font-stack: HelvNeueMediumforIBM, HelvNeueRomanforIBM, Helvetica, Arial, sans-serif;
+$light-font-stack: HelvNeueLightforIBM, HelvNeueRomanforIBM, Helvetica, Arial, sans-serif;

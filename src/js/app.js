@@ -25,7 +25,7 @@ global.app = function () {
 	let scroll_cooldown = 1000; 								// 1 second cooldown for mousescroll
 	let scroll_threshold = 30;									// ignore smaller scroll events
 	let page_cooldown = 700; 									// .7 second cooldown for default page
-	let scroll_time = new Date().getTime()-page_cooldown;		// last scroll timestamp
+	let page_last_ts = new Date().getTime()-page_cooldown;		// last scroll timestamp
 
 	/**
 	 * CSS preload #people cycle images
@@ -89,7 +89,7 @@ global.app = function () {
 	let nextPage = function() {
 		if (page_id < page.length-1) {
 			let new_id = page_id+1;
-			scrollPage(new_id);
+			goToPage(new_id);
 		}
 	}
 
@@ -99,23 +99,23 @@ global.app = function () {
 	let prevPage = function() {
 		if (page_id > 0) {
 			let new_id = page_id-1;
-			scrollPage(new_id);
+			goToPage(new_id);
 		}
 	}
 
 	/**
 	 * Checks if past cooldown
 	 */
-	let onCooldown = function(cooldown) {
-		let current_time = new Date().getTime();
-		if ((current_time - scroll_time) < cooldown) return false;
+	let isPageCooldown = function(cooldown_ts) {
+		let current_ts = new Date().getTime();
+		if ((current_ts - page_last_ts) < cooldown_ts) return false;
 		return true;
 	}
 
 	/**
 	 * Switch to given page id
 	 */
-	let scrollPage = function(new_id) {
+	let goToPage = function(new_id) {
 		if (new_id == page_id) return false;
 
 		// #people page init
@@ -146,7 +146,7 @@ global.app = function () {
 
 		// update scroll globals
 		page_id = new_id;
-		scroll_time = new Date().getTime();
+		page_last_ts = new Date().getTime();
 	}
 
 	/**
@@ -154,7 +154,7 @@ global.app = function () {
 	 */
 	$('body').mousewheel(function(e) {
 		let scroll_value = e.deltaY;
-		if (!onCooldown(scroll_cooldown) || scroll_value>scroll_threshold) return; // ignore if on cooldown or if too small
+		if (!isPageCooldown(scroll_cooldown) || scroll_value>scroll_threshold) return; // ignore if on cooldown or if too small
 		
 		if (scroll_value < 0) {
 			nextPage();
@@ -167,7 +167,7 @@ global.app = function () {
 	 * Event for keyboard scrolling
 	 */
 	$(document).keydown(function(e){
-		if (!onCooldown(page_cooldown)) return; // ignore if on cooldown
+		if (!isPageCooldown(page_cooldown)) return; // ignore if on cooldown
 
 		if (e.keyCode == 38) {
 			prevPage();
@@ -187,11 +187,11 @@ global.app = function () {
 	 * Nav bar listener
 	 */
 	$('.nav-link').click(function(e) {   
-		if (!onCooldown(page_cooldown)) return;  // ignore if on cooldown
+		if (!isPageCooldown(page_cooldown)) return;  // ignore if on cooldown
 
 		e.preventDefault();
 		let new_id = $('.nav-link').index($(this));
-		scrollPage(new_id);
+		goToPage(new_id);
 	});
 };
 

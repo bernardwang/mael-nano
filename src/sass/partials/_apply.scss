@@ -1,7 +1,6 @@
 #apply {
 	background-color: $background6;
 	color: $secondaryfont;
-	overflow-y: auto;
 
 	.page-overlay {
 		background-color: $background6;
@@ -170,6 +169,8 @@
 
 @media (max-width: $bp-medium) {
 	#apply {
+		overflow-y: auto; // hacky, fix later
+
 		.page-container {
 			padding: 2rem;
 			padding-right: 3rem;

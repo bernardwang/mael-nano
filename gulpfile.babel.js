@@ -26,14 +26,14 @@ const watchifyOpts = _.extend(
 );
 const eslintOpts = {
 	//extends : 'eslint:recommended',
-	//extends : 'airbnb',
+	extends : 'airbnb',
 	parser : 'babel-eslint',
 	rules : {
 		'indent': [2, 'tab'],
 	}
 }
 const sassOpts = {
-	includePaths: ["./node_modules/typey/stylesheets"] // include typey
+	//includePaths: ["./node_modules/typey/stylesheets"] // include typey
 }
 const autoprefixerOpts = {
 	browsers: ['last 2 versions'],

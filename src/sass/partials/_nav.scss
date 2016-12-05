@@ -2,19 +2,19 @@
 	flex-direction: column;
 	justify-content: center;
 	position: fixed;
-	width: 216px;
+	width: 13.5rem;
 	height: 100vh;
 	top: 0;
-	right: -155px;
+	right: -9.688rem;
 	z-index: 999;
 
 	text-align: left;
-	font-size: 14px;
+	font-size: 0.875rem;
 	background-color: rgba(1, 2, 3, .15);
 	transition: transform .5s, background .5s;
 
 	&:hover {
-		transform: translateX(-146px);
+		transform: translateX(-9.125rem);
 		background-color: rgba(1, 2, 3, .4);
 
 		.nav-elem.target {
@@ -24,8 +24,8 @@
 }
 
 .nav-elem {
-	padding: 8px;
-	padding-left: 15px;
+	padding: 0.5rem;
+	padding-left: 0.9375rem;
 	transition: background .5s;
 
 	&.target {
@@ -52,15 +52,18 @@
 	};
 }
 
-
 .nav-button {
 	color: white;
-	margin: 10px;
-	margin-right: 45px;
+	margin: 0.625rem;
+	margin-right: 2.813rem;
 }
 
 .nav-label {
 	color: $background1;
 	font-family: $medium-font-stack;
 	transition: color .5s;
+}
+
+@media (max-width: $bp-medium) {
+
 }

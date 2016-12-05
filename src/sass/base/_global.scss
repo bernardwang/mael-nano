@@ -43,3 +43,8 @@ a{
 	cursor: pointer;
 }
 
+@media (max-width: $bp-medium) {
+	html {
+		font-size: 12px;
+	}
+}

@@ -98,6 +98,15 @@
 	}
 }
 
+@media (max-width: $bp-large) {
+	#people {
+		.swap-desc {
+			bottom: 1rem;
+		}
+	}
+}
+
+
 @media (max-width: $bp-medium) {
 	#people {
 		background-position: -100vw;
@@ -119,14 +128,6 @@
 			bottom: 0;
 			text-align: left;
 			padding: 0;
-		}
-	}
-}
-
-@media (max-width: $bp-large) {
-	#people {
-		.swap-desc {
-			bottom: 1rem;
 		}
 	}
 }

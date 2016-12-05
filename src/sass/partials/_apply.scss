@@ -1,6 +1,7 @@
 #apply {
 	background-color: $background6;
 	color: $secondaryfont;
+	overflow-y: auto;
 
 	.page-overlay {
 		background-color: $background6;
@@ -12,7 +13,7 @@
 		align-items: stretch;
 	}
 
-	#apply-copy {
+	#apply-desc {
 		width: 45vw;
 
 		.page-header {
@@ -29,7 +30,7 @@
 		margin-left: -5rem;
 	}
 
-	.form-basic {
+	.apply-form {
 		margin-top: 3.2rem;
 		font: inherit;
 	}
@@ -37,8 +38,8 @@
 	.svg {
 		margin: 1rem;
 		margin-bottom: .7rem;
-		width: 65px;
-		height: 65px;
+		width: 4rem;
+		height: 4rem;
 		color: white;
 	}
 
@@ -67,7 +68,7 @@
 		font-weight: 400;
 	}
 
-	#job-selector {
+	#form-roles {
 		justify-content: flex-start;
 		margin-bottom: 2.5rem;
 		button {
@@ -79,7 +80,7 @@
 		}
 	}
 
-	h1 {
+	.form-header {
 		display: inline-block;
 		box-sizing: border-box;
 		color: $secondaryfont;
@@ -90,7 +91,7 @@
 		margin-top: 0;
 	}
 
-	input {
+	.form-input {
 		font-size: 1rem;
 		background-color: rgba(0, 0, 0, 0);
 		border: 0 solid #f00;
@@ -100,36 +101,16 @@
 		width: 100%;
 		padding: 6px 6px 6px 0;
 		margin-top: 0rem;
+
+		&::placeholder {
+			color: $secondaryfont;
+		}
+
+		&:focus {
+		}
 	}
 
-	input:focus {
-	}
-
-	/* GROSS HACK ALERT WEEEOOOOWEEEOOO */
-	input::-webkit-input-placeholder {
-		color: $secondaryfont;
-	}
-
-	input::-moz-placeholder {
-		color: $secondaryfont;
-	}
-
-	input:-ms-input-placeholder {
-		color: $secondaryfont;
-	}
-
-	select {
-		background-color: #ffffff;
-		color: $primaryfont;
-		box-sizing: border-box;
-		max-width: 240px;
-		font-size: 1.25rem;
-		padding: 12px 8px;
-		border: 1px solid #dbdbdb;
-		margin-top: 0.40rem;
-	}
-
-	button {
+	.form-submit {
 		justify-content: flex-start;
 		border-radius: 2px;
 		background-color: $secondaryfont;
@@ -143,23 +124,16 @@
 		height: 3rem;
 		margin: 1rem auto 0;
 	}
-}
 
-@media (max-width: $bp-medium) {
-	#apply {
-		.page-container {
-			padding: 2rem;
-		}
-
-		.svg {
-			margin: .5rem;
-			width: 50px;
-			height: 50px;
-		}
-
-		#job-selector {
-			justify-content: space-between;
-		}
+	select {
+		background-color: #ffffff;
+		color: $primaryfont;
+		box-sizing: border-box;
+		max-width: 240px;
+		font-size: 1.25rem;
+		padding: 12px 8px;
+		border: 1px solid #dbdbdb;
+		margin-top: 0.40rem;
 	}
 }
 
@@ -179,7 +153,7 @@
 			padding: 3rem;
 		}
 		
-		#apply-copy {
+		#apply-desc {
 			width: 80%;
 		}
 
@@ -187,9 +161,35 @@
 			display: none;
 		}
 
-		.form-basic {
+		.apply-form {
 			margin-top: 0;
 			width: 90%;
 		}
 	}
 }	
+
+
+@media (max-width: $bp-medium) {
+	#apply {
+		.page-container {
+			padding: 2rem;
+			padding-right: 3rem;
+		}
+
+		.svg {
+			margin: .5rem;
+			width: 2.6rem;
+			height: 2.6rem;
+		}
+
+		#form-roles {
+			justify-content: space-between;
+			margin-bottom: 2rem;
+		}
+
+		.form-submit {
+			width: 100%;
+			padding: 0;
+		}
+	}
+}

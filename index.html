@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="./assets/css/main.css">
 	<link rel="stylesheet" href="./assets/css/normalize.css">
   </head>
-  <body>
+  <body id="body">
 	<nav>
 		<div class="nav-container util-flex" id="nav">
 		<div class="nav-elem target">
@@ -178,14 +178,14 @@
 	<section class="util-flex page" id="apply">
 		<div class="page-overlay"></div>
 		<div class="page-container">
-			<section id="apply-copy">
+			<section id="apply-desc">
 				<p class="page-label">Apply</p>
 				<h1 class="page-header">Think you got what it takes?</h1>
 				<img class="apply-visual" src="assets/img/slide6.png"/>
 			</section>
-			<form class="form-basic" method="post" action="#">
-			  <h1>What discipline are you applying to?</h1>
-				<div id="job-selector" class="util-flex form-row">
+			<form class="apply-form" method="post" action="#">
+				<h1 class="form-header">What discipline are you applying to?</h1>
+				<div id="form-roles" class="util-flex form-row">
 				  <div class="svg-container">
 					<img class="svg" src="assets/img/Research.svg">
 					<p>Research</p>
@@ -203,33 +203,33 @@
 					<p>Frontend</p>
 				  </div>
 				</div>
-				<h1>Personal Information</h1>
+				<h1 class="form-header">Personal Information</h1>
 				<div class="form-row">
 					<label>
 					<h3 class="form-label">Name</h3>
-				<input placeholder="Meme Betadam" type="text" name="name">
+				<input class="form-input" placeholder="Meme Betadam" type="text" name="name">
 			</label>
 				</div>
 				<div class="form-row">
 					<label>
 					<h3 class="form-label">Email</h3>
-				<input type="email" placeholder="meme@school.edu" name="email">
+				<input class="form-input" type="email" placeholder="meme@school.edu" name="email">
 			</label>
 				</div>
 				<div class="form-row">
 					<label>
 					<h3 class="form-label">Phone Number</h3>
-				<input type="email" placeholder="512-123-4567" name="email">
+				<input class="form-input" type="email" placeholder="512-123-4567" name="email">
 			</label>
 				</div>
 				<div class="form-row">
 					<label>
 					<h3 class="form-label">Portfolio</h3>
-				<input placeholder="www.mbetadam.com" type="text" name="text">
+				<input class="form-input" placeholder="www.mbetadam.com" type="text" name="text">
 			</label>
 				</div>
 				<div class="form-row">
-					<button type="submit">Submit</button>
+					<button class="form-submit" type="submit">Submit</button>
 				</div>
 			</form>
 		</div>

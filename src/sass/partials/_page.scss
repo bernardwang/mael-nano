@@ -83,6 +83,13 @@
 	opacity: 0;
 }
 
+
+@media (max-width: $bp-medium) {
+	html {
+		font-size: 12px;
+	}
+}
+
 @media (max-width: $bp-large) {
 	.page-overlay {
 		opacity: .7;

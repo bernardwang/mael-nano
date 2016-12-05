@@ -43,7 +43,7 @@ global.app = function () {
 	 * http://blog.simonwillison.net/post/57956760515/addloadevent
 	 */
 	let addLoadEvent = function(func) {
-		var oldonload = window.onload;
+		let oldonload = window.onload;
 		if (typeof window.onload != 'function') {
 			window.onload = func;
 		} else {
@@ -193,6 +193,20 @@ global.app = function () {
 		let new_id = $('.nav-link').index($(this));
 		goToPage(new_id);
 	});
+
+	if (Hammer) {
+		let element = document.getElementById('body');
+		let hammertime = new Hammer(element);
+		hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+		hammertime.on('swipeup', function(e) {
+			console.log(1);
+			nextPage();
+		});
+		hammertime.on('swipedown', function(e) {
+			console.log(2);
+			prevPage();
+		});
+	}
 };
 
 global.app();

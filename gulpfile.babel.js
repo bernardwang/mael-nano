@@ -49,7 +49,7 @@ const imageminOpts = {
 	optimizationLevel : 3
 };
 const syncOpts = {
-  stream: true,
+	stream: true,
 };
 const deployOpts = {
 	//branch: 'master', // user page website

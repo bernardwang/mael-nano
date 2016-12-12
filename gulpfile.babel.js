@@ -25,11 +25,15 @@ const watchifyOpts = _.extend(
 	browserifyOpts, watchify.args
 );
 const eslintOpts = {
-	//extends : 'eslint:recommended',
-	extends : 'airbnb',
-	parser : 'babel-eslint',
-	rules : {
-		'indent': [2, 'tab'],
+	//"extends": "eslint:recommended",
+	//"extends": "airbnb",
+	"env": {
+		"es6": true,
+		"browser": true
+	},
+	"rules": {
+		"no-tabs": "off",
+		"indent": ["error", "tab"]
 	}
 }
 const sassOpts = {
@@ -193,7 +197,7 @@ gulp.task('dist', ['lint-scripts','min-styles','min-scripts'], () => {
 		server: {
 		baseDir: './dist/'
 		}
-  	});
+	});
 });
 
 /**

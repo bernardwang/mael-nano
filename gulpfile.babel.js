@@ -29,11 +29,22 @@ const eslintOpts = {
 	//"extends": "airbnb",
 	"env": {
 		"es6": true,
-		"browser": true
+		"browser": true,
 	},
+	"globals": [
+		"window",
+		"document",
+		"$",
+		"Hammer",
+	],
 	"rules": {
+		"max-len": ["warn", { "code": 100 }],
+		"no-unused-vars": ["warn", { "vars": "all", "args": "after-used" }],
+		"prefer-template": "off",
+		"camelcase": "off",
 		"no-tabs": "off",
-		"indent": ["error", "tab"]
+		"no-plusplus": "off",
+		"indent": ["error", "tab"],
 	}
 }
 const sassOpts = {
@@ -66,14 +77,11 @@ const SRC_HTML = './dist/**/*.html';
 const SRC_SASS = './src/sass/**/*.scss';
 const SRC_JS = './src/js/**/*.js';
 const SRC_IMG	= './src/img/*';
-
 const DEST_JS	= './dist/assets/js/';
 const DEST_CSS = './dist/assets/css/';
 const DEST_IMG = './dist/assets/img/';
-
 const DIST_CSS = './dist/assets/css/*.css';
 const DIST_JS = './dist/assets/js/*.js';
-
 const ENTRY_JS = './src/js/app.js';
 
 // Browserify function

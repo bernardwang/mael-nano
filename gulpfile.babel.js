@@ -38,6 +38,7 @@ const eslintOpts = {
 		"Hammer",
 	],
 	"rules": {
+		"prefer-arrow-callback": ["warn", { "allowNamedFunctions": true }],
 		"max-len": ["warn", { "code": 100 }],
 		"no-unused-vars": ["warn", { "vars": "all", "args": "after-used" }],
 		"prefer-template": "off",

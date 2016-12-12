@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 
+
 global.app = function () {
 	let page_id = 0;							// current page index
 	const page = [      						// array of page
@@ -153,7 +154,7 @@ global.app = function () {
 	/**
 	 * Event for mouse scrolling
 	 */
-	$('body').mousewheel((e) => {
+	$('body').mousewheel(function (e) {
 		const scroll_value = e.deltaY;
 		if (!isPageCooldown(scroll_cooldown) || scroll_value > scroll_threshold) return; // ignore if on cooldown or if too small
 
@@ -167,8 +168,8 @@ global.app = function () {
 	/**
 	 * Event for keyboard scrolling
 	 */
-	$(document).keydown((e) => {
-		if (!isPageCooldown(page_cooldown)) return;	// ignore if on cooldown
+	$(document).keydown(function (e) {
+		if (!isPageCooldown(page_cooldown)) return; // ignore if on cooldown
 
 		if (e.keyCode === 38) {
 			prevPage();
@@ -180,31 +181,32 @@ global.app = function () {
 	/**
 	 * Landing page arrow listener
 	 */
-	$('#arrow-link').click((e) => {
+	$('#arrow-link').click(function (e) {
 		nextPage();
 	});
 
 	/**
 	 * Nav bar listener
 	 */
-	$('.nav-link').click((e) => {
-		if (!isPageCooldown(page_cooldown)) return;	// ignore if on cooldown
+	$('.nav-link').click(function (e) {
+		if (!isPageCooldown(page_cooldown)) return;  // ignore if on cooldown
 
 		e.preventDefault();
 		const new_id = $('.nav-link').index($(this));
 		goToPage(new_id);
 	});
 
+	/**
+	 * Swipe touch events on mobile
+	 */
 	if (Hammer) {
 		const element = document.getElementById('body');
 		const hammertime = new Hammer(element);
 		hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-		hammertime.on('swipeup', (e) => {
-			console.log(1);
+		hammertime.on('swipeup', function (e) {
 			nextPage();
 		});
-		hammertime.on('swipedown', (e) => {
-			console.log(2);
+		hammertime.on('swipedown', function (e) {
 			prevPage();
 		});
 	}

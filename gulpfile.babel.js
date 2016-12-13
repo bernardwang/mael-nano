@@ -202,15 +202,6 @@ gulp.task('assets', () => {
 });
 
 /**
- *	Compress and move images
- */
-gulp.task('min-imgs', () => {
-	gulp.src(SRC_IMG)
-		.pipe(imagemin(imageminOpts))
-		.pipe(gulp.dest(DEST_IMG));
-});
-
-/**
  *	Starts browsersync
  */
 gulp.task('browsersync', () => {
@@ -234,26 +225,35 @@ gulp.task('watcher', () => {
 /************ USE THESE PLS ************/
 
 /**
- *	Clean task - deletes dist folder
+ *	dev - auto builds and browsersync
+ */
+gulp.task('dev', ['pages', 'styles','watch-scripts', 'assets', 'watcher', 'browsersync']);
+
+/**
+ *	dist - prod build
+ */
+gulp.task('dist', ['pages', 'min-styles', 'lint-scripts', 'min-scripts', 'assets']);
+
+/**
+ *	clean - deletes dist folder
  */
 gulp.task('clean', () => {
 	return del(DEST_HTML);
 });
 
 /**
- *	Dev task - auto builds and browsersync
+ *	min-imgs - compress and move images
  */
-gulp.task('dev', ['pages', 'styles','watch-scripts', 'assets', 'watcher', 'browsersync']);
+gulp.task('min-imgs', () => {
+	gulp.src(SRC_IMG)
+		.pipe(imagemin(imageminOpts))
+		.pipe(gulp.dest(DEST_IMG));
+});
 
 /**
- *	Dist task - prod build
+ *	deploy - prod build once, minified images, then deploys to gh-pages
  */
-gulp.task('dist', ['pages', 'min-styles', 'lint-scripts', 'min-scripts', 'assets']);
-
-/**
- *	Deploy task - prod build once, minified images, then deploys to gh-pages
- */
-gulp.task('deploy', ['dist', 'min-imgs'], () => {
+gulp.task('deploy', ['dist'], () => {
 	return gulp.src('./dist/**/*')
 		.pipe(deploy(deployOpts));
 });
